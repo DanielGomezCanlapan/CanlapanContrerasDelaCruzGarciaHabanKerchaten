@@ -1,1 +1,134 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class Tester extends JFrame {
+    private JLabel sideA, sideB, sideC, rad, resultP, resultA;
+    private JTextField sideATF, sideBTF, sideCTF, radTF, resultPTF, resultATF;
+    private JButton circleB,triangleB,squareB,rectangleB,clearB,exitB;
+    private CircleButtonHandler circleHandler;
+    private TriangleButtonHnadler triangleHandler;
+    private SquareButtonHandler squareHandler;
+    private RectangleButtonHandler rectangleHandler;
+    private static final int WIDTH = 500;
+    private static final int HEIGHT = 400;
+    public Tester(){
+        sideA = new JLabel("Enter the side of : ", SwingConstants.RIGHT);
+        sideB = new JLabel("Enter the side of : ", SwingConstants.RIGHT);
+        sideC= new JLabel("Enter the side of : ",, SwingConstants.RIGHT);
+        rad= new JLabel("Enter radius of the circle : ",, SwingConstants.RIGHT);
+        resultP = new JLabel("Area: " , SwingConstants.RIGHT);
+        resultA = new JLabel("Perimeter: " , SwingConstants.RIGHT);
+        sideATF = new JTextField(10);
+        sideATF.setFont(new Font("Arial", Font.BOLD, 20));
+        sideBTF = new JTextField(10);
+        sideBTF.setFont(new Font("Arial", Font.BOLD, 20));
+        sideCTF = new JTextField(10);
+        sideCTF.setFont(new Font("Arial", Font.BOLD, 20));
+        radTF = new JTextField(10);
+        radTF.setFont(new Font("Arial", Font.BOLD, 20));
+        resultPTF = new JTextField(10);
+        resultPTF.setFont(new Font("Arial", Font.BOLD, 20));
+        resultPTF.setEnabled(false);
+        resultATF = new JTextField(10);
+        resultATF.setFont(new Font("Arial", Font.BOLD, 20));
+        resultATF.setEnabled(false);
+        circleB = new JButton("Circle");
+        circleHandler = new CircleButtonHandler();
+        circleB.addActionListener(circleHandler);
+        subtractB = new JButton("Subtract");
+
+        subtractHandler = new SubtractButtonHandler();
+        subtractB.addActionListener(subtractHandler);
+        multiplyB = new JButton("Multiply");
+        multiplyHandler = new MultiplyButtonHandler();
+        multiplyB.addActionListener(multiplyHandler);
+        divideB = new JButton("Divide");
+        divideHandler = new DivideButtonHandler();
+        divideB.addActionListener(divideHandler);
+        clearB = new JButton("Clear");
+        clearHandler = new ClearButtonHandler();
+        clearB.addActionListener(clearHandler);
+        exitB = new JButton("Exit");
+        ebHandler = new ExitButtonHandler();
+        exitB.addActionListener(ebHandler);
+        setTitle("Arithmetic Calculator by <YourName> ");
+        Container pane = getContentPane();
+        pane.setLayout(new GridLayout(6,2));
+        pane.add(firstL);
+        pane.add(firstTF);
+        pane.add(secondL);
+        pane.add(secondTF);
+        pane.add(resultL);
+        pane.add(resultTF);
+        pane.add(addB);
+        pane.add(subtractB);
+        pane.add(multiplyB);
+        pane.add(divideB);
+        pane.add(clearB);
+        pane.add(exitB);
+        setSize(WIDTH, HEIGHT);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+    } // end of constructor
+
+    private class AddButtonHandler implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            double first=0, second=0, result=0;
+            try {
+                first = Double.parseDouble(firstTF.getText());
+                second = Double.parseDouble(secondTF.getText());
+            } catch (NumberFormatException x) {
+                x.printStackTrace();
+            } // end of catch
+            result = first + second;
+            resultTF.setText(""+result);
+        }
+    } // end of AddButtonHandler class
+
+    private class SubtractButtonHandler implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            double first, second, result;
+            first = Double.parseDouble(firstTF.getText());
+            second = Double.parseDouble(secondTF.getText());
+            result = first - second;
+            resultTF.setText(""+result);
+        }
+    } // end of SubtractButtonHandler class
+    private class MultiplyButtonHandler implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            double first, second, result;
+            first = Double.parseDouble(firstTF.getText());
+            second = Double.parseDouble(secondTF.getText());
+            result = first * second;
+            resultTF.setText(""+result);
+        }
+    } // end of MultiplyButtonHandler class
+    private class ClearButtonHandler implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            firstTF.setText("");
+            secondTF.setText("");
+            resultTF.setText("");
+        }
+    } // end of ClearButtonHandler class
+
+    private class DivideButtonHandler implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            double first, second, result;
+            first = Double.parseDouble(firstTF.getText());
+            second = Double.parseDouble(secondTF.getText());
+            result = first/second;
+            resultTF.setText(""+result);
+        }
+    } // end of DivideButtonHandler class
+
+    private class ExitButtonHandler implements ActionListener {
+        public void actionPerformed(ActionEvent e){
+            System.exit(0);
+        }
+    }
+    public static void main(String[] args){
+        Tester calculatorObject = new Tester();
+    }
+} // end of ArithmeticCalculatorG class
 
