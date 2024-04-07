@@ -5,7 +5,7 @@ package mexer2.prog2.edu.slu;
  */
 public class Triangle extends Shape {
     /**
-     * The lengths of the three sides of the triangle. 
+     * The lengths of the three sides of the triangle.
      */
     private double side1, side2, side3;
 
@@ -22,6 +22,7 @@ public class Triangle extends Shape {
     /**
      * Method used to calculate the area of the triangle using Heron's formula.
      */
+    @Override
     public double area() {
         // Line of code used to calculate the semi-perimeter of the triangle
         double s = (side1 + side2 + side3) / 2;
@@ -33,6 +34,7 @@ public class Triangle extends Shape {
     /**
      * Method to used to calculate the perimeter of the triangle.
      */
+    @Override
     public double perimeter() {
         // Calculates the perimeter of the triangle
         double perimeter = side1 + side2 + side3;
